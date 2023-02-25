@@ -1,26 +1,21 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
+import Web3 from 'web3'
+import {Web3ReactProvider} from '@web3-react/core'
+import {MetaMaskProvider} from "./hooks";
+import {MainPage} from "./screens";
+
+const getLibrary: (provider?: any) => any = (provider) => new Web3(provider)
+
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <Web3ReactProvider getLibrary={getLibrary}>
+            <MetaMaskProvider>
+                <MainPage/>
+            </MetaMaskProvider>
+        </Web3ReactProvider>
+    );
 }
 
 export default App;
