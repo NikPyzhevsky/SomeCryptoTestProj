@@ -2,7 +2,9 @@ import React, {createContext, FC, ReactNode, useCallback, useContext, useEffect,
 import {useWeb3React} from "@web3-react/core";
 import {InjectedConnector} from "@web3-react/injected-connector";
 
-export const MetaMaskContext = createContext<null | any>(null)
+type MetaMaskContextT =  {isActive: boolean, account: string | null | undefined, isLoading: boolean, connect: () => Promise<void>, disconnect: () => Promise<void>}
+
+export const MetaMaskContext = createContext<null | MetaMaskContextT>(null)
 export const injected = new InjectedConnector({supportedChainIds: [1]})
 
 export const MetaMaskProvider: FC<{ children: ReactNode }> = ({children}) => {
