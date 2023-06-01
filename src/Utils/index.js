@@ -50,6 +50,7 @@ export const changeGPX = (xml) => {
 }
 
 export function transformGPXFile(gpxFile) {
+    console.log(gpxFile)
     const trkpts = gpxFile.gpx.trk[0].trkseg[0].trkpt;
     const newWpts = [];
     const startingDate = new Date(2019, 11, 6, 14, 20, 50); // December 6th, 2019 at 2:19:00 PM
@@ -64,7 +65,7 @@ export function transformGPXFile(gpxFile) {
         const lon = trkpt.$.lon;
 
         // Получение содержимого name элемента
-        const name = trkpt.name[0];
+        const name = `Point ${i}`
 
         // Создание нового wpt элемента
         const newWpt = {
